@@ -151,8 +151,7 @@ def main():
         html_parser.feed(content)
 
         with open(args.stats_file, "w") as stats_file, open(args.messages_file, "w") as msgs_file:
-            html_parser.most_reacted_msgs.sort(key=lambda x: x.n_reactions)
-            html_parser.most_reacted_msgs.reverse()
+            html_parser.most_reacted_msgs.sort(key=lambda x: x.n_reactions, reverse=True)
 
             msgs_file.write("Most reacted to messages:\n\n")
             for msg in html_parser.most_reacted_msgs:
@@ -176,8 +175,7 @@ def main():
             users = []
             for _, user in html_parser.user_data.items():
                 users.append(user)
-            users.sort(key=lambda x: x.n_msgs)
-            users.reverse()
+            users.sort(key=lambda x: x.n_msgs, reverse=True)
 
             for user in users:
                 stats_file.write("__" + user.name + "__\n")
