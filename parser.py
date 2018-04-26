@@ -1,6 +1,8 @@
 import re
 import argparse
 
+import pdb
+
 from html.parser import HTMLParser
 
 class FbMessage():
@@ -104,7 +106,7 @@ class FbChatHTMLParser(HTMLParser):
         }.get(weekday, "Well fuck me")
 
     def get_msg_time_info(self, msg):
-        regex = "(\w*), (\w* \w* \w*) at (\d*)"
+        regex = "(\w*), (\w* \w*,? \w*) at (\d*)"
         m = re.match(regex, msg.datetime)
         return m.group(2), self.weekday_to_idx(m.group(1)), int(m.group(3))
 
